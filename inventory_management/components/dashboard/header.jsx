@@ -5,7 +5,7 @@ import Image from "next/image";
 
 export default function Header() {
   return (
-    <div className="bg-gray-100 h-10 flex items-center justify-between px-8 border-b border-slate-200">
+    <div className="bg-gray-200 h-10 flex items-center justify-between pr-8 pl-2 border-b border-slate-200">
       <div className="flex gap-3">
         <button>
           <History />

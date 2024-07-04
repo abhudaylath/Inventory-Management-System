@@ -1,3 +1,4 @@
+"use client"
 import {
   BaggageClaim,
   BarChart,
@@ -12,9 +13,62 @@ import {
 import Link from "next/link";
 import React from "react";
 import SubscriptionCard from "./subscriptionCard";
+import SidebarDropDownLinks from "./SidebarDropDownLinks";
 export default function Sidebar() {
+  const InventoryLinks=[
+    {
+      title:"Items",
+      href:""
+    },
+    {
+      title:"Item Groups",
+      href:""
+    },
+    {
+      title:"Inventory Adjustments",
+      href:""
+    }
+  ]
+  const SalesLinks=[
+    {
+      title:"Customers",
+      href:""
+    },
+    {
+      title:"Sales Order",
+      href:""
+    },
+    {
+      title:"Packages",
+      href:""
+    },
+    {
+      title:"Shipments",
+      href:""
+    },
+    {
+      title:"Invoices",
+      href:""
+    },
+    {
+      title:"Sales Receipt",
+      href:""
+    },
+    {
+      title:"Payments Received",
+      href:""
+    },
+    {
+      title:"Sales Return",
+      href:""
+    },
+    {
+      title:"Credit Notes",
+      href:""
+    }
+  ]
   return (
-    <div className="w-60 bg-slate-800 min-h-screen text-slate-50 fixed">
+    <div className="w-56 bg-slate-800 min-h-screen text-slate-50 fixed">
       <div className="flex flex-col">
         <div className="flex space-x-2 items-center bg-slate-950 py-3 px-4">
           <Forklift />
@@ -28,14 +82,8 @@ export default function Sidebar() {
             <Home className="w-4 h-4" />
             <span>Home</span>
           </Link>
-          <button className="flex items-center p-3 space-x-2">
-            <BaggageClaim className="w-4 h-4" />
-            <span>Inventory</span>
-          </button>
-          <button className="flex items-center p-3 space-x-2">
-            <ShoppingCart className="w-4 h-4" />
-            <span>Sales</span>
-          </button>
+          <SidebarDropDownLinks title="Inventory" links={InventoryLinks} icon={BaggageClaim}/>
+          <SidebarDropDownLinks links={SalesLinks} icon={ShoppingCart} title="Sales"/>
           <button className="flex items-center p-3 space-x-2">
             <ShoppingBag className="w-4 h-4" />
             <span>Purchases</span>
