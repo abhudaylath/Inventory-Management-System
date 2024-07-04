@@ -39,9 +39,9 @@ export default function HomeNav() {
           </div>
         </div>
         <nav className="sticky mt-5 px-5 flex space-x-4">
-          {navLinks.map((item) => {
+          {navLinks.map((item,i) => {
             return (
-              <Link
+              <Link key={i}
                 href={item.href}
                 className={`${
                   pathName === item.href
