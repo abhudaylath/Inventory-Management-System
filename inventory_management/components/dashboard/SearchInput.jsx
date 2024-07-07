@@ -3,7 +3,7 @@ import React from "react";
 export default function SearchInput() {
   return (
     <form>
-      <label  className="sr-only">
+      <label htmlFor="simple-search" className="sr-only">
         Search
       </label>
       <div className="relative w-full">

@@ -35,7 +35,7 @@ export default function Header() {
                 <ChevronDown className="w-4 h-4 "/>
             </button>
             <button>
-                <Image src="/public/profile.png" alt="profile pic" width={360} height={355} className="rounded-full w-8 h-8 border-slate-900"/>
+                <Image src="/profile.png" alt="profile pic" width={360} height={355} className="rounded-full w-8 h-8 border-slate-900"/>
             </button>
         </div>
       </div>
