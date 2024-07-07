@@ -44,12 +44,20 @@ export default function Inventory() {
             href:"/dashboard/inventory/warehouse/new",
             button:"New Warehouse",
             enabled:true
+        },
+        {
+            title:"Inventory Adjustments",
+            p:"Transfer stock from the Main Warehouse",
+            icon:NotepadText,
+            href:"/dashboard/inventory/adjustments/new",
+            button:"New Adjustment",
+            enabled:true
         }
     ]
   return (
     <div>
       <FixedHeader newlink="/dashboard/inventory/items/new" />
-      <div className="grid grid-cols-1 lg:grid-cols-2 mt-6 ml-16">
+      <div className="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 mt-6 ml-16">
         {
             options.map((item,i)=>{
                 return(

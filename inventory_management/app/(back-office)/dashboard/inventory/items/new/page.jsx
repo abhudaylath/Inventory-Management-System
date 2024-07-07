@@ -1,12 +1,18 @@
 "use client";
 import FormHeader from "@/components/dashboard/FormHeader";
 import SelectInput from "@/components/dashboard/SelectInput";
+import ImageInput from "@/components/FormInput/ImageInput";
 import SubmitButton from "@/components/FormInput/SubmitButton";
 import TextareaInput from "@/components/FormInput/TextareaInput";
 import TextInput from "@/components/FormInput/TextInput";
+import { UploadButton } from "@/lib/uploadthings";
+import { UploadDropzone } from "@uploadthing/react";
+import { Pencil } from "lucide-react";
+import Image from "next/image";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 export default function NewItem() {
+  const [imageUrl, setImageUrl] = useState("");
   const categories = [
     {
       label: "Electronics",
@@ -65,6 +71,7 @@ export default function NewItem() {
     formState: { errors },
   } = useForm();
   async function onSubimit(data) {
+    data.imageUrl = imageUrl;
     console.log(data);
     setLoading(true);
     const baseURL = "http://localhost:3000";
@@ -88,7 +95,7 @@ export default function NewItem() {
   }
   return (
     <div>
-      <FormHeader title="New Item"  href="/dashboard/inventory" />
+      <FormHeader title="New Item" href="/dashboard/inventory" />
       <form
         onSubmit={handleSubmit(onSubimit)}
         className="w-full max-w-4xl p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700 mx-auto mt-4"
@@ -216,6 +223,7 @@ export default function NewItem() {
             register={register}
             errors={errors}
           />
+          <ImageInput label="Item Image" imageUrl={imageUrl} endpoint="imageUploader" setImageUrl={setImageUrl}/>
         </div>
         <SubmitButton isLoading={loading} title="Item" />
       </form>

@@ -17,7 +17,7 @@ export default function TextareaInput({name,label,isRequired = true,register,err
               defaultValue={""}
               placeholder={`Enter the ${label}`}
             />
-            {errors.title && (
+            {errors[`${name}`]&& (
               <span className="text-sm text-red-600 ">
                 {label} is required
               </span>
