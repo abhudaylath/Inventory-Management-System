@@ -1,82 +1,47 @@
 "use client";
+import AddInventoryForm from "@/components/dashboard/AddInventoryForm";
 import FormHeader from "@/components/dashboard/FormHeader";
-import SelectInput from "@/components/dashboard/SelectInput";
-import SubmitButton from "@/components/FormInput/SubmitButton";
-import TextareaInput from "@/components/FormInput/TextareaInput";
-import TextInput from "@/components/FormInput/TextInput";
+import TransferInventoryForm from "@/components/dashboard/TransferInventoryForm";
+import { Minus, Plus } from "lucide-react";
 import React, { useState } from "react";
-import { useForm } from "react-hook-form";
 export default function NewAdjustment() {
-  const branches = [
+  const tabs = [
     {
-      label: "BranchA",
-      value: "Main",
+      title: "Add Stocks",
+      icon: Plus,
+      form:"add"
     },
     {
-      label: "BranchB",
-      value: "Branch",
+      title: "Transfer Stocks",
+      icon: Minus,
+      form:"transfer"
     },
   ];
-  const [loading, setLoading] = useState(false);
-  const {
-    register,
-    handleSubmit,
-    reset,
-    formState: { errors },
-  } = useForm();
-  async function onSubimit(data) {
-    console.log(data);
-    setLoading(true);
-    const baseURL = "http://localhost:3000";
-    try {
-      const response = await fetch(`${baseURL}/api/warehouse`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
-      if (response.ok) {
-        console.log(response);
-        setLoading(false);
-        reset();
-      }
-    } catch (error) {
-      setLoading(false);
-      console.log(error);
-    }
-  }
+  const [activeForm,setActiveForm]=useState("add");
   return (
     <div>
       <FormHeader title="New Adjustment" href="/dashboard/inventory" />
-      <form
-        onSubmit={handleSubmit(onSubimit)}
-        className="w-full max-w-4xl p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700 mx-auto mt-4"
-      >
-        <div className="grid gap-4 sm:grid-cols-2 sm:gap-6">
-          <TextInput
-            label="Amount of stock to be transfered"
-            name="transferStockQty"
-            register={register}
-            errors={errors}
-            className="w-full"
-          />
-          <SelectInput
-            register={register}
-            label="Select the warehouse type"
-            name="receivingBranchId"
-            options={branches}
-            className="w-full"
-          />
-          <TextareaInput
-            label="Adjustment Notes"
-            name="notes"
-            register={register}
-            errors={errors}
-          />
-        </div>
-        <SubmitButton isLoading={loading} title="unit" />
-      </form>
+
+      <div className="border-b dark:border-gray-700 w-full max-w-4xl p-4 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 mx-auto mt-4">
+        <ul className="flex flex-wrap -mb-px text-sm font-medium text-center text-gray-500 dark:text-gray-400">
+          {tabs.map((item, i) => {
+            const Icon = item.icon;
+            return(
+              <li className="me-2" key={i}>
+              <button
+                onClick={()=>setActiveForm(item.form)}
+                className={`${activeForm===item.form?"inline-flex items-center justify-center p-4 text-blue-600 border-b-2 border-blue-600 rounded-t-lg active dark:text-blue-500 dark:border-blue-500 group":"inline-flex items-center justify-center p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 group"}`}
+              >
+                <Icon className={`${activeForm===item.form?"w-4 h-4 me-2 text-blue-600 dark:text-blue-500":"w-4 h-4 me-2 text-gray-400 group-hover:text-gray-500 dark:text-gray-500 dark:group-hover:text-gray-300"}`}/>
+                {item.title}
+              </button>
+            </li>
+            )
+          })}
+
+        </ul>
+      </div>
+          {activeForm==="add"?<AddInventoryForm/>:<TransferInventoryForm />}
     </div>
   );
 }

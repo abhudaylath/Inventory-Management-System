@@ -1,6 +1,6 @@
 import FixedHeader from "@/components/dashboard/FixedHeader";
 import OptionCard from "@/components/dashboard/OptionCard";
-import {  Box, Boxes, Component, NotepadText, Shapes, Shirt, ShirtIcon } from "lucide-react";
+import {Diff, LayoutGrid, LayoutPanelTop, Scale,  Target, Warehouse } from "lucide-react";
 import React from "react";
 
 export default function Inventory() {
@@ -8,7 +8,7 @@ export default function Inventory() {
         {
             title:"Items",
             p:"Create standalone items and services that you buy and sell",
-            icon:Shirt,
+            icon:LayoutGrid,
             href:"/dashboard/inventory/items/new",
             button:"New Item",
             enabled:true
@@ -16,7 +16,7 @@ export default function Inventory() {
         {
             title:"Categories",
             p:"Create multiple variants of the same item using Item Groups",
-            icon:Boxes,
+            icon:LayoutPanelTop,
             href:"/dashboard/inventory/categories/new",
             button:"New Category",
             enabled:true
@@ -24,31 +24,31 @@ export default function Inventory() {
         {
             title:"Brands",
             p:"Bundle different items together and sell them as kits",
-            icon:Shapes,
+            icon:Target,
             href:"/dashboard/inventory/brands/new",
             button:"New Brand",
             enabled:true
         },
         {
-            title:"Units",
-            p:"Tweak your item prices for specific contracts or transactions",
-            icon:Component,
-            href:"/dashboard/inventory/units/new",
-            button:"New Unit",
-            enabled:true
-        },
-        {
             title:"Warehouses",
             p:"Tweak your item prices for specific contracts or transactions",
-            icon:NotepadText,
+            icon:Warehouse,
             href:"/dashboard/inventory/warehouse/new",
             button:"New Warehouse",
             enabled:true
         },
         {
+            title:"Units",
+            p:"Tweak your item prices for specific contracts or transactions",
+            icon:Scale,
+            href:"/dashboard/inventory/units/new",
+            button:"New Unit",
+            enabled:true
+        },
+        {
             title:"Inventory Adjustments",
             p:"Transfer stock from the Main Warehouse",
-            icon:NotepadText,
+            icon:Diff,
             href:"/dashboard/inventory/adjustments/new",
             button:"New Adjustment",
             enabled:true
