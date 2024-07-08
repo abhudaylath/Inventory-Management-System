@@ -29,6 +29,10 @@ export default function Sidebar() {
       href:"/dashboard/inventory"
     },
     {
+      title:"Supplier",
+      href:"/dashboard/inventory"
+    },
+    {
       title:"Units",
       href:"/dashboard/inventory"
     },

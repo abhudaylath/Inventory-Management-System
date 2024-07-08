@@ -5,6 +5,7 @@ import TextareaInput from "@/components/FormInput/TextareaInput";
 import TextInput from "@/components/FormInput/TextInput";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 export default function NewUnits() {
   const [loading,setLoading]=useState(false);
   const {
@@ -27,6 +28,7 @@ export default function NewUnits() {
     if(response.ok){
       console.log(response);
       setLoading(false);
+      toast.success('Unit created Successfully')
       reset();
     }
     } catch (error) {

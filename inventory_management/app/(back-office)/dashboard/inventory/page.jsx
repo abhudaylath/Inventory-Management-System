@@ -1,6 +1,6 @@
 import FixedHeader from "@/components/dashboard/FixedHeader";
 import OptionCard from "@/components/dashboard/OptionCard";
-import {Diff, LayoutGrid, LayoutPanelTop, Scale,  Target, Warehouse } from "lucide-react";
+import {Diff, Factory, LayoutGrid, LayoutPanelTop, Scale,  Target, Warehouse } from "lucide-react";
 import React from "react";
 
 export default function Inventory() {
@@ -22,6 +22,14 @@ export default function Inventory() {
             enabled:true
         },
         {
+            title:"Supplier",
+            p:"Tweak your item prices for specific contracts or transactions",
+            icon:Factory,
+            href:"/dashboard/inventory/supplier/new",
+            button:"New Supplier",
+            enabled:true
+        },
+        {
             title:"Brands",
             p:"Bundle different items together and sell them as kits",
             icon:Target,
@@ -30,19 +38,19 @@ export default function Inventory() {
             enabled:true
         },
         {
-            title:"Warehouses",
-            p:"Tweak your item prices for specific contracts or transactions",
-            icon:Warehouse,
-            href:"/dashboard/inventory/warehouse/new",
-            button:"New Warehouse",
-            enabled:true
-        },
-        {
             title:"Units",
             p:"Tweak your item prices for specific contracts or transactions",
             icon:Scale,
             href:"/dashboard/inventory/units/new",
             button:"New Unit",
+            enabled:true
+        },
+        {
+            title:"Warehouses",
+            p:"Tweak your item prices for specific contracts or transactions",
+            icon:Warehouse,
+            href:"/dashboard/inventory/warehouse/new",
+            button:"New Warehouse",
             enabled:true
         },
         {
