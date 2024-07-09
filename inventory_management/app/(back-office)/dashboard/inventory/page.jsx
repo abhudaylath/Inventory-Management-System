@@ -64,7 +64,7 @@ export default function Inventory() {
     ]
   return (
     <div>
-      <FixedHeader newlink="/dashboard/inventory/items/new" />
+      <FixedHeader title="All Items" newlink="/dashboard/inventory/items/new" />
       <div className="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 mt-6 ml-16">
         {
             options.map((item,i)=>{

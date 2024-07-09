@@ -10,12 +10,12 @@ import { useForm } from "react-hook-form";
 export default function NewWarehouse() {
   const selectOptions = [
     {
-      label: "Main",
-      value: "Main",
+      title: "Main",
+      id: "Main",
     },
     {
-      label: "Branch",
-      value: "Branch",
+      title: "Branch",
+      id: "Branch",
     },
   ];
   const [loading, setLoading] = useState(false);
@@ -31,7 +31,7 @@ export default function NewWarehouse() {
   }
   return (
     <div>
-      <FormHeader title="New Warehouse" href="/dashboard/inventory" />
+      <FormHeader title="New Warehouse" href="/dashboard/inventory/warehouse" />
       <form
         onSubmit={handleSubmit(onSubimit)}
         className="w-full max-w-4xl p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700 mx-auto mt-4"
@@ -64,7 +64,7 @@ export default function NewWarehouse() {
             errors={errors}
           />
         </div>
-        <SubmitButton isLoading={loading} title="unit" />
+        <SubmitButton isLoading={loading} title="warehouse" />
       </form>
     </div>
   );

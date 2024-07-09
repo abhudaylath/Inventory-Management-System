@@ -20,7 +20,7 @@ export default function AdjustmentForm({items,warehouse}) {
   const [activeForm,setActiveForm]=useState("add");
   return (
     <div>
-      <FormHeader title="New Adjustment" href="/dashboard/inventory" />
+      <FormHeader title="New Adjustment" href="/dashboard/inventory/adjustments" />
 
       <div className="border-b dark:border-gray-700 w-full max-w-4xl p-4 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 mx-auto mt-4">
         <ul className="flex flex-wrap -mb-px text-sm font-medium text-center text-gray-500 dark:text-gray-400">

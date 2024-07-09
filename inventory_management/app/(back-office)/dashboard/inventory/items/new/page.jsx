@@ -11,7 +11,7 @@ export default async function NewItem() {
   const [categories,units,brands,warehouses,suppliers]=await Promise.all([categoriesData,unitsData,brandsData,warehousesData,suppliersData])
   return (
     <div>
-      <FormHeader title="New Item" href="/dashboard/inventory"/>
+      <FormHeader title="New Item" href="/dashboard/inventory/items"/>
       <CreateItemForm categories={categories} brands={brands} warehouses={warehouses} units={units} suppliers={suppliers}/>
     </div>
   ); 

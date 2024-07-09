@@ -17,32 +17,36 @@ import SidebarDropDownLinks from "./SidebarDropDownLinks";
 export default function Sidebar() {
   const InventoryLinks=[
     {
-      title:"Items",
+      title:"All",
       href:"/dashboard/inventory"
+    },
+    {
+      title:"Items",
+      href:"/dashboard/inventory/items"
     },
     {
       title:"Categories",
-      href:"/dashboard/inventory"
+      href:"/dashboard/inventory/categories"
     },
     {
       title:"Brands",
-      href:"/dashboard/inventory"
+      href:"/dashboard/inventory/brands"
     },
     {
       title:"Supplier",
-      href:"/dashboard/inventory"
+      href:"/dashboard/inventory/supplier"
     },
     {
       title:"Units",
-      href:"/dashboard/inventory"
+      href:"/dashboard/inventory/units"
     },
     {
       title:"Warehouse",
-      href:"/dashboard/inventory"
+      href:"/dashboard/inventory/warehouse"
     },
     {
       title:"Inventory Adjustments",
-      href:"/dashboard/inventory"
+      href:"/dashboard/inventory/adjustments"
     }
   ]
   const SalesLinks=[
@@ -98,8 +102,8 @@ export default function Sidebar() {
             <Home className="w-4 h-4" />
             <span>Home</span>
           </Link>
-          <SidebarDropDownLinks title="Inventory" links={InventoryLinks} icon={BaggageClaim}/>
-          <SidebarDropDownLinks links={SalesLinks} icon={ShoppingCart} title="Sales"/>
+          <SidebarDropDownLinks title="Inventory" links={InventoryLinks} icon={BaggageClaim} newlink="/dashboard/inventory"/>
+          <SidebarDropDownLinks links={SalesLinks} icon={ShoppingCart} title="Sales" newlink="#"/>
           <button className="flex items-center p-3 space-x-2">
             <ShoppingBag className="w-4 h-4" />
             <span>Purchases</span>

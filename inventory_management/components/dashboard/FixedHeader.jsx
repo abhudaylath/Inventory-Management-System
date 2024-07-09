@@ -1,10 +1,10 @@
 import { HelpCircle, LayoutGrid, List, MoreHorizontal, Plus } from "lucide-react";
 import Link from "next/link";
 import React from "react";
-export default function FixedHeader({newlink}) {
+export default function FixedHeader({newlink,title}) {
   return (
     <div className="flex justify-between px-5 py-6 bg-white">
-      <button className="font-semibold text-xl">All items</button>
+      <button className="font-semibold text-xl">{title}</button>
       <div className="flex space-x-4">
         <Link href={newlink} className="bg-blue-600 rounded-lg flex p-1 items-center text-white space-x-2 px-2">
           <Plus className="w-4 h-4" />

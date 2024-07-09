@@ -7,7 +7,7 @@ import {
   } from "@/components/ui/collapsible";
 import Link from "next/link";
 import { ChevronRight, PlusCircle } from "lucide-react";
-export default function SidebarDropDownLinks({ title, links, icon:Icon }) {
+export default function SidebarDropDownLinks({ title, links, icon:Icon, newlink}) {
   return (
     <Collapsible>
       <CollapsibleTrigger className="flex items-center justify-between w-full">
