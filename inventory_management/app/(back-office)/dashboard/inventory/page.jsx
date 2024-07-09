@@ -69,7 +69,7 @@ export default function Inventory() {
         {
             options.map((item,i)=>{
                 return(
-                    <OptionCard options={item}/>
+                    <OptionCard options={item} key={i}/>
                 )
             })
         }

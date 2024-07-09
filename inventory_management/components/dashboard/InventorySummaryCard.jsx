@@ -14,7 +14,7 @@ export default function InventorySummaryCard(){
         <div>
             {InventorySummary.map((item, i) => {
           return (
-            <div className="rounded-lg border border-slate-200 hover:border-blue-500 bg-white items-center cursor-pointer flex justify-between p-2 mb-3">
+            <div key={i} className="rounded-lg border border-slate-200 hover:border-blue-500 bg-white items-center cursor-pointer flex justify-between p-2 mb-3">
               <span className="uppercase text-sm">{item.title}</span>
               <span className="text-2xl font-semibold text-slate-500">{item.number}</span>
             </div>

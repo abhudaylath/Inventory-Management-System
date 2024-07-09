@@ -4,9 +4,9 @@ import SelectInput from "@/components/dashboard/SelectInput";
 import SubmitButton from "@/components/FormInput/SubmitButton";
 import TextareaInput from "@/components/FormInput/TextareaInput";
 import TextInput from "@/components/FormInput/TextInput";
+import { makePostRequest } from "@/lib/apiRequest";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import toast from "react-hot-toast";
 export default function NewWarehouse() {
   const selectOptions = [
     {
@@ -27,26 +27,7 @@ export default function NewWarehouse() {
   } = useForm();
   async function onSubimit(data) {
     console.log(data);
-    setLoading(true);
-    const baseURL = "http://localhost:3000";
-    try {
-      const response = await fetch(`${baseURL}/api/warehouse`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
-      if (response.ok) {
-        console.log(response);
-        setLoading(false);
-        toast.success('Warehouse Created Successfully')
-        reset();
-      }
-    } catch (error) {
-      setLoading(false);
-      console.log(error);
-    }
+    makePostRequest(setLoading,"/api/warehouse",data,"Warehouse",reset)
   }
   return (
     <div>

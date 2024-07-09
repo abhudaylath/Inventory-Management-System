@@ -21,3 +21,23 @@ export async function POST(request){
     })
     }   
 }
+export async function GET(request) {
+    try {
+        const brand = await db.brand.findMany(
+            {
+                orderBy: {
+                    createdAt: 'desc'
+                }
+            }
+        )
+        return NextResponse.json(brand)
+    } catch (error) {
+        console.log(error);
+        return NextResponse.json({
+            error,
+            message: "failed to fetch a brand"
+        }, {
+            status: 500
+        })
+    }
+}

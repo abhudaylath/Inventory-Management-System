@@ -1,23 +1,12 @@
 "use client";
 import FormHeader from "@/components/dashboard/FormHeader";
-import SelectInput from "@/components/dashboard/SelectInput";
 import SubmitButton from "@/components/FormInput/SubmitButton";
 import TextareaInput from "@/components/FormInput/TextareaInput";
 import TextInput from "@/components/FormInput/TextInput";
+import { makePostRequest } from "@/lib/apiRequest";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import toast from "react-hot-toast";
 export default function NewSupplier() {
-  const selectOptions = [
-    {
-      label: "Main",
-      value: "Main",
-    },
-    {
-      label: "Branch",
-      value: "Branch",
-    },
-  ];
   const [loading, setLoading] = useState(false);
   const {
     register,
@@ -27,26 +16,7 @@ export default function NewSupplier() {
   } = useForm();
   async function onSubimit(data) {
     console.log(data);
-    setLoading(true);
-    const baseURL = "http://localhost:3000";
-    try {
-      const response = await fetch(`${baseURL}/api/supplier`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
-      if (response.ok) {
-        console.log(response);
-        setLoading(false);
-        toast.success('Supplier Created Successfully')
-        reset();
-      }
-    } catch (error) {
-      setLoading(false);
-      console.log(error);
-    }
+    makePostRequest(setLoading,"/api/supplier",data,"Supplier",reset)
   }
   return (
     <div>
@@ -58,7 +28,7 @@ export default function NewSupplier() {
         <div className="grid gap-4 sm:grid-cols-2 sm:gap-6">
           <TextInput
             label="Supplier Name"
-            name="name"
+            name="title"
             register={register}
             errors={errors}
             className="w-full"

@@ -1,11 +1,10 @@
 "use client"
 import FormHeader from "@/components/dashboard/FormHeader";
 import SubmitButton from "@/components/FormInput/SubmitButton";
-import TextareaInput from "@/components/FormInput/TextareaInput";
 import TextInput from "@/components/FormInput/TextInput";
+import { makePostRequest } from "@/lib/apiRequest";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import toast from "react-hot-toast";
 export default function NewBrands() {
   const [loading,setLoading]=useState(false);
   const {
@@ -15,26 +14,8 @@ export default function NewBrands() {
     formState: { errors },
   } = useForm();
   async function onSubimit(data) {
-    //console.log(data);
-    setLoading(true);
-    const baseURL = "http://localhost:3000"
-    try {
-      const response = await fetch(`${baseURL}/api/brands`,{method:"POST",
-        headers:{
-          "Content-Type":"application/json"
-        },
-        body:JSON.stringify(data)
-    })
-    if(response.ok){
-      console.log(response);
-      setLoading(false);
-      toast.success('Brand Created Successfully')
-      reset();
-    }
-    } catch (error) {
-      setLoading(false);
-      console.log(error);
-    }
+    console.log(data);
+    makePostRequest(setLoading,"/api/brands",data,"Brand",reset)
   }
   return (
     <div>

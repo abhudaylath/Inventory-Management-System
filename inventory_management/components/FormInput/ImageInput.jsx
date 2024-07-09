@@ -2,6 +2,7 @@ import { UploadDropzone } from "@uploadthing/react";
 import { Pencil } from "lucide-react";
 import Image from "next/image";
 import React from "react";
+import toast from "react-hot-toast";
 export default function ImageInput({label,imageUrl="",setImageUrl,endpoint="imageUploader", className="col-span-full"}){
       return(
         <div className={className}>
@@ -38,7 +39,7 @@ export default function ImageInput({label,imageUrl="",setImageUrl,endpoint="imag
                   setImageUrl(res[0].url);
                   // Do something with the response
                   console.log("Files: ", res);
-                  alert("Upload Completed");
+                  toast.success('upload was successful')
                 }}
                 onUploadError={(error) => {
                   // Do something with the error.

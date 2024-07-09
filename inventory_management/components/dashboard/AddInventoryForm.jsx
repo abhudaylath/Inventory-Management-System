@@ -3,19 +3,10 @@ import SelectInput from "@/components/dashboard/SelectInput";
 import SubmitButton from "@/components/FormInput/SubmitButton";
 import TextareaInput from "@/components/FormInput/TextareaInput";
 import TextInput from "@/components/FormInput/TextInput";
+import { makePostRequest } from "@/lib/apiRequest";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-export default function AddInventoryForm() {
-  const branches = [
-    {
-      label: "BranchA",
-      value: "Main",
-    },
-    {
-      label: "BranchB",
-      value: "Branch",
-    },
-  ];
+export default function AddInventoryForm({items,warehouse}) {
   const [loading, setLoading] = useState(false);
   const {
     register,
@@ -25,25 +16,7 @@ export default function AddInventoryForm() {
   } = useForm();
   async function onSubimit(data) {
     console.log(data);
-    setLoading(true);
-    const baseURL = "http://localhost:3000";
-    try {
-      const response = await fetch(`${baseURL}/api/warehouse/add`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
-      if (response.ok) {
-        console.log(response);
-        setLoading(false);
-        reset();
-      }
-    } catch (error) {
-      setLoading(false);
-      console.log(error);
-    }
+    makePostRequest(setLoading,"/api/adjustments/add",data,"Adjustment",reset)
   }
   return (
     <form
@@ -54,9 +27,16 @@ export default function AddInventoryForm() {
       <TextInput
           label="Refernce Number"
           name="referenceNumber"
-          type="number"
           register={register}
           errors={errors}
+          className="w-full"
+        />
+        <SelectInput
+          register={register}
+          label="Select the Item"
+          name="itemId"
+          options={items}
+          className="w-full"
         />
         <TextInput
           label="Amount of stock to be added"
@@ -70,7 +50,7 @@ export default function AddInventoryForm() {
           register={register}
           label="Select the warehouse that will receive the stock"
           name="warehouseId"
-          options={branches}
+          options={warehouse}
           className="w-full"
         />
         <TextareaInput

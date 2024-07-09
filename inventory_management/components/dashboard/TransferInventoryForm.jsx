@@ -3,19 +3,10 @@ import SelectInput from "@/components/dashboard/SelectInput";
 import SubmitButton from "@/components/FormInput/SubmitButton";
 import TextareaInput from "@/components/FormInput/TextareaInput";
 import TextInput from "@/components/FormInput/TextInput";
+import { makePostRequest } from "@/lib/apiRequest";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-export default function TransferInventoryForm() {
-  const branches = [
-    {
-      label: "BranchA",
-      value: "Main",
-    },
-    {
-      label: "BranchB",
-      value: "Branch",
-    },
-  ];
+export default function TransferInventoryForm({items,warehouse}) {
   const [loading, setLoading] = useState(false);
   const {
     register,
@@ -25,25 +16,7 @@ export default function TransferInventoryForm() {
   } = useForm();
   async function onSubimit(data) {
     console.log(data);
-    setLoading(true);
-    const baseURL = "http://localhost:3000";
-    try {
-      const response = await fetch(`${baseURL}/api/warehouse/transfer`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
-      if (response.ok) {
-        console.log(response);
-        setLoading(false);
-        reset();
-      }
-    } catch (error) {
-      setLoading(false);
-      console.log(error);
-    }
+    makePostRequest(setLoading,"/api/adjustments/transfer",data,"Adjustment",reset)
   }
   return (
     <form
@@ -54,28 +27,35 @@ export default function TransferInventoryForm() {
       <TextInput
           label="Refernce Number"
           name="referenceNumber"
-          type="number"
           register={register}
           errors={errors}
+        />
+        <SelectInput
+          register={register}
+          label="Select the Item"
+          name="itemId"
+          options={items}
+          className="w-full"
         />
         <TextInput
           label="Amount of stock to be transfered"
           name="transferStockQty"
           register={register}
           errors={errors}
+          className="w-full"
         />
         <SelectInput
           register={register}
           label="Select the Warehouse that will give the stock"
           name="givingWarehouseId"
-          options={branches}
+          options={warehouse}
           className="w-full"
         />
         <SelectInput
           register={register}
           label="Select the Warehouse that will receive the stock"
           name="receivingWarehouseId"
-          options={branches}
+          options={warehouse}
           className="w-full"
         />
         <TextareaInput

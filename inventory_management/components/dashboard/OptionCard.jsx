@@ -1,6 +1,5 @@
-import { Shirt } from "lucide-react";
-import Link from "next/link";
 import React from "react";
+import Link from "next/link";
 export default function OptionCard({ options}) {
   let { title, p,icon:Icon, href, button, enabled } = options;
   return (

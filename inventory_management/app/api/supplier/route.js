@@ -3,22 +3,19 @@ import { NextResponse } from "next/server";
 
 export async function POST(request) {
     try {
-        const { title, location, description, type } = await request.json();
-        const warehouse = await db.warehouse.create({
+        const { title, phone, email, address, contactPerson, supplierCode, paymentTerms, taxID, notes } = await request.json();
+        const supplier = await db.supplier.create({
             data: {
-                title,
-                location,
-                description,
-                warehouseType: type
+                title, phone, email, address, contactPerson, supplierCode, paymentTerms, taxID, notes
             }
         })
-        console.log(warehouse);
-        return NextResponse.json(warehouse)
+        console.log(supplier);
+        return NextResponse.json(supplier)
     } catch (error) {
         console.log(error);
         return NextResponse.json({
             error,
-            message: "failed to fetch a warehouse"
+            message: "failed to create a supplier"
         }, {
             status: 500
         })
@@ -27,19 +24,19 @@ export async function POST(request) {
 
 export async function GET(request) {
     try {
-        const warehouse = await db.warehouse.findMany(
+        const supplier = await db.supplier.findMany(
             {
                 orderBy: {
                     createdAt: 'desc'
                 }
             }
         )
-        return NextResponse.json(warehouse)
+        return NextResponse.json(supplier)
     } catch (error) {
         console.log(error);
         return NextResponse.json({
             error,
-            message: "failed to fetch a warehouse"
+            message: "failed to fetch a supplier"
         }, {
             status: 500
         })
