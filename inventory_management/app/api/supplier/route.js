@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 
 export async function POST(request) {
     try {
-        const { title, phone, email, address, contactPerson, supplierCode, paymentTerms, taxID, notes } = await request.json();
+        const { title, phone, email, address, contactPerson, supplierCode, paymentTerms, taxID, notes } = await request.json(); 
         const supplier = await db.supplier.create({
             data: {
                 title, phone, email, address, contactPerson, supplierCode, paymentTerms, taxID, notes

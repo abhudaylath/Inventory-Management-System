@@ -7,7 +7,9 @@ import {
   } from "@/components/ui/collapsible";
 import Link from "next/link";
 import { ChevronRight, PlusCircle } from "lucide-react";
-export default function SidebarDropDownLinks({ title, links, icon:Icon, newlink}) {
+import CollapsibleLink from "./CollapsibleLink";
+import { set } from "react-hook-form";
+export default function SidebarDropDownLinks({ title, links, icon:Icon,setSidebar }) {
   return (
     <Collapsible>
       <CollapsibleTrigger className="flex items-center justify-between w-full">
@@ -20,14 +22,7 @@ export default function SidebarDropDownLinks({ title, links, icon:Icon, newlink}
       <CollapsibleContent>
         {links.map((item, i) => {
           return (
-            <Link
-              href={item.href}
-              key={i}
-              className="flex items-center justify-between pl-7 ml-2 pr-4 rounded-lg hover:bg-slate-950 pt-2 pb-2 transition-all duration-300 mr-1"
-            >
-              <span>{item.title}</span>
-              <PlusCircle className="w-4 h-4" />
-            </Link>
+            <CollapsibleLink key={i} title={item.title} href={item.href} setSidebar={setSidebar}/>
           );
         })}
       </CollapsibleContent>

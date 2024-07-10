@@ -25,3 +25,29 @@ export async function makePostRequest(setLoading,url,data,resourceName, reset) {
         console.log(error);
     }
 }
+
+export async function makePutRequest(setLoading,url,data,resourceName, redirect) {
+    try {
+        const baseURL = "http://localhost:3000";
+        setLoading(true);
+        const response = await fetch(`${baseURL}${url}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+        });
+        if (response.ok) {
+            console.log(response);
+            setLoading(false);
+            toast.success(`${resourceName} Updated Successfully`)
+            redirect();
+        }else{
+            setLoading(false);
+            toast.success('Something went wrong')
+        }
+    } catch (error) {
+        setLoading(false);
+        console.log(error);
+    }
+}

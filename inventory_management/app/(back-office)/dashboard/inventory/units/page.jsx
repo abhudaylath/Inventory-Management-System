@@ -9,7 +9,7 @@ export default async function Units(){
         <div>
             <FixedHeader title="Units" newlink="http://localhost:3000/dashboard/inventory/units/new"/>
             <div className="my-4 p-8">
-            <DataTable data={supplier} columns={columns}/>
+            <DataTable data={supplier} columns={columns} updateLink="units/update"/>
             </div>
         </div>
     );

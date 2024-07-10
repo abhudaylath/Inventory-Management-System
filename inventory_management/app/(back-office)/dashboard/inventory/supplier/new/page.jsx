@@ -3,24 +3,35 @@ import FormHeader from "@/components/dashboard/FormHeader";
 import SubmitButton from "@/components/FormInput/SubmitButton";
 import TextareaInput from "@/components/FormInput/TextareaInput";
 import TextInput from "@/components/FormInput/TextInput";
-import { makePostRequest } from "@/lib/apiRequest";
+import { makePostRequest, makePutRequest } from "@/lib/apiRequest";
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-export default function NewSupplier() {
+export default function NewSupplier({initialData={}, isUpdate=false}) {
+  const router = useRouter()
+  function redirect(){
+    router.push("/dashboard/inventory/supplier")
+    router.refresh()
+  }
   const [loading, setLoading] = useState(false);
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    defaultValues:initialData
+  });
   async function onSubimit(data) {
     console.log(data);
-    makePostRequest(setLoading,"/api/supplier",data,"Supplier",reset)
-  }
+    if(isUpdate){
+      makePutRequest(setLoading,`/api/supplier/${initialData.id}`,data,"Supplier",redirect)
+    }else{
+    makePostRequest(setLoading,"/api/supplier",data,"Supplier",reset)}
+  } 
   return (
     <div>
-      <FormHeader title="New Supplier" href="/dashboard/inventory/supplier" />
+      <FormHeader title={isUpdate?"Update Supplier":"New Supplier"} href="/dashboard/inventory/supplier" />
       <form
         onSubmit={handleSubmit(onSubimit)}
         className="w-full max-w-4xl p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700 mx-auto mt-4"
@@ -89,7 +100,7 @@ export default function NewSupplier() {
             errors={errors}
           />
         </div>
-        <SubmitButton isLoading={loading} title="Supplier" />
+        <SubmitButton isLoading={loading} title={isUpdate?"Updated Supplier":"New Supplier"} />
       </form>
     </div>
   );

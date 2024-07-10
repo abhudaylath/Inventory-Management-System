@@ -12,7 +12,7 @@ export default async function Adjustments(){
             <FixedHeader title="Brands" newlink="http://localhost:3000/dashboard/inventory/adjustments/new"/>
             <div className="my-4 p-8">
                 <h2 className="p-2 text-xl font-semibold">Stock Increment Adjustment</h2>
-            <DataTable data={addAjustments} columns={columns}/>
+            <DataTable data={addAjustments} columns={columns} updateLink="http://localhost:3000/dashboard/inventory/adjustments/new"/>
             </div>
             <div className="my-4 p-8">
             <h2 className="p-2 text-xl font-semibold">Stock Transfer Adjustment</h2>

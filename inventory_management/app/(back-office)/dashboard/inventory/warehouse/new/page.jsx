@@ -4,10 +4,16 @@ import SelectInput from "@/components/dashboard/SelectInput";
 import SubmitButton from "@/components/FormInput/SubmitButton";
 import TextareaInput from "@/components/FormInput/TextareaInput";
 import TextInput from "@/components/FormInput/TextInput";
-import { makePostRequest } from "@/lib/apiRequest";
+import { makePostRequest, makePutRequest } from "@/lib/apiRequest";
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-export default function NewWarehouse() {
+export default function NewWarehouse({initialData={},isUpdate=false}) {
+  const router = useRouter();
+  function redirect(){ 
+    router.push("/dashboard/inventory/warehouse")
+    router.refresh()
+  }
   const selectOptions = [
     {
       title: "Main",
@@ -24,14 +30,20 @@ export default function NewWarehouse() {
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    defaultValues:initialData,
+  });
   async function onSubimit(data) {
     console.log(data);
-    makePostRequest(setLoading,"/api/warehouse",data,"Warehouse",reset)
+    if(isUpdate){
+      makePutRequest(setLoading,`/api/warehouse/${initialData.id}`,data,"Warehouse",redirect)
+    }else{
+      makePostRequest(setLoading,"/api/warehouse",data,"Warehouse",reset)
+    }
   }
   return (
     <div>
-      <FormHeader title="New Warehouse" href="/dashboard/inventory/warehouse" />
+      <FormHeader title={isUpdate?"Update Warehouse":"New Warehouse"} href="/dashboard/inventory/warehouse" />
       <form
         onSubmit={handleSubmit(onSubimit)}
         className="w-full max-w-4xl p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700 mx-auto mt-4"
@@ -64,8 +76,8 @@ export default function NewWarehouse() {
             errors={errors}
           />
         </div>
-        <SubmitButton isLoading={loading} title="warehouse" />
+        <SubmitButton isLoading={loading} title={isUpdate?"Updated Warehouse":"New Warehouse"} />
       </form>
     </div>
   );
-}
+} 

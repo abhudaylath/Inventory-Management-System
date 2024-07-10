@@ -2,7 +2,7 @@ import db from "@/lib/db";
 import { NextResponse } from "next/server";
 
 export async function POST(request) {
-    try {
+    try { 
         const items = await request.json();
         const item = await db.item.create({
             data: {

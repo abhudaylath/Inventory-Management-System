@@ -2,7 +2,7 @@ import { Search } from "lucide-react";
 import React from "react";
 export default function SearchInput() {
   return (
-    <form>
+    <form className="hidden lg:block">
       <label htmlFor="simple-search" className="sr-only">
         Search
       </label>

@@ -9,8 +9,8 @@ export default async function Supplier(){
         <div>
             <FixedHeader title="supplier" newlink="http://localhost:3000/dashboard/inventory/supplier/new"/>
             <div className="my-4 p-8">
-            <DataTable data={supplier} columns={columns}/>
+            <DataTable data={supplier} columns={columns} updateLink="supplier/update"/>
             </div>
         </div>
     );
-}
+}  
