@@ -14,7 +14,7 @@ export default function CreateItemForm({categories,units,brands,warehouses,suppl
     router.push("/dashboard/inventory/items")
     router.refresh()
   }
-  const [imageUrl, setImageUrl] = useState("");
+  const [imageUrl, setImageUrl] = useState(initialData.imageUrl);
   const [loading, setLoading] = useState(false);
   const {
     register,
@@ -25,12 +25,11 @@ export default function CreateItemForm({categories,units,brands,warehouses,suppl
     defaultValues:initialData,
   });
   async function onSubimit(data) {
-    data.imageUrl = imageUrl;
-    console.log(data);
+    data.imageUrl = imageUrl || "";
     if(isUpdate){
       makePutRequest(setLoading,`/api/items/${initialData.id}`,data,"Item",redirect)
     }else{
-      makePostRequest(setLoading,"/api/items",data,"Item",reset)
+      makePostRequest(setLoading,"/api/items",data,"Item",redirect)
     }
     setImageUrl("");
   }
@@ -162,7 +161,7 @@ export default function CreateItemForm({categories,units,brands,warehouses,suppl
           register={register}
           errors={errors}
         />
-        <ImageInput label="Item Image" imageUrl={imageUrl} endpoint="imageUploader" setImageUrl={setImageUrl}/>
+        <ImageInput label="Item Image" imageUrl={imageUrl} endpoint="imageUploader" setImageUrl={setImageUrl} register={register} errors={errors}/>
       </div>
       <SubmitButton isLoading={loading} title={isUpdate?"Updated Item":"New Item"} />
     </form>

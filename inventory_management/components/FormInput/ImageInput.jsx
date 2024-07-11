@@ -2,8 +2,9 @@ import { UploadDropzone } from "@uploadthing/react";
 import { Pencil } from "lucide-react";
 import Image from "next/image";
 import React from "react";
-import toast from "react-hot-toast";
-export default function ImageInput({label,imageUrl="",setImageUrl,endpoint="imageUploader", className="col-span-full"}){
+import toast from "react-hot-toast"; 
+export default function ImageInput({label,imageUrl="",setImageUrl,endpoint="imageUploader", register,errors,className="col-span-full",isRequired=true}){
+  
       return(
         <div className={className}>
             <div className="flex justify-between items-center mb-4">
@@ -38,7 +39,6 @@ export default function ImageInput({label,imageUrl="",setImageUrl,endpoint="imag
                 onClientUploadComplete={(res) => {
                   setImageUrl(res[0].url);
                   // Do something with the response
-                  console.log("Files: ", res);
                   toast.success('upload was successful')
                 }}
                 onUploadError={(error) => {

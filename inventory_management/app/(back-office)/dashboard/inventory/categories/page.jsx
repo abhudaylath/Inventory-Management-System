@@ -9,7 +9,7 @@ export default async function Categories(){
         <div>
             <FixedHeader title="Categories" newlink="http://localhost:3000/dashboard/inventory/categories/new"/>
             <div className="my-4 p-8">
-            <DataTable data={data} columns={columns} updateLink="categories/update"/>
+            <DataTable data={data} columns={columns} updateLink="categories/update" resourceName="categories"/>
             </div>
         </div>
     );

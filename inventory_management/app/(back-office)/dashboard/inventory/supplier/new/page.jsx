@@ -23,11 +23,10 @@ export default function NewSupplier({initialData={}, isUpdate=false}) {
     defaultValues:initialData
   });
   async function onSubimit(data) {
-    console.log(data);
     if(isUpdate){
       makePutRequest(setLoading,`/api/supplier/${initialData.id}`,data,"Supplier",redirect)
     }else{
-    makePostRequest(setLoading,"/api/supplier",data,"Supplier",reset)}
+    makePostRequest(setLoading,"/api/supplier",data,"Supplier",redirect)}
   } 
   return (
     <div>

@@ -12,7 +12,6 @@ export async function POST(request) {
                 warehouseType: type
             }
         })
-        console.log(warehouse);
         return NextResponse.json(warehouse)
     } catch (error) {
         console.log(error);
@@ -43,5 +42,26 @@ export async function GET(request) {
         }, {
             status: 500
         })
+    }
+}
+
+
+export async function DELETE(request){
+    try {
+        const id = request.nextUrl.searchParams.get("id")
+        const deleteBrand = await db.warehouse.delete({
+            where:{
+                id
+            }
+        })
+        return NextResponse.json(deleteBrand)
+    } catch (error) {
+        console.log(error);
+        return NextResponse.json({
+            error,
+            message:"failed to delete the warehouse"
+    },{
+        status:500
+    })
     }
 }

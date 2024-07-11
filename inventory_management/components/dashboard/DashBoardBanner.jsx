@@ -7,7 +7,7 @@ export default function DashBoardBanner() {
   return (
     <div
       className={`${
-        state ? "hidden" : "flex gap-8 py-6 px-16 items-center relative"
+        state ? "hidden" : "hidden lg:flex gap-8 py-6 px-16 items-center relative"
       }`}
     >
       <CreditCard className="w-16 h-16 text-slate-500" />

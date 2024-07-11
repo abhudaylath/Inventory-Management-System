@@ -26,7 +26,6 @@ export async function POST(request) {
                 notes: items.notes
             }
         })
-        console.log(item);
         return NextResponse.json(item)
     } catch (error) {
         console.log(error);
@@ -44,6 +43,13 @@ export async function GET(request) {
             {
                 orderBy: {
                     createdAt: 'desc'
+                },
+                include:{
+                    category:true,
+                    supplier:true,
+                    unit:true,
+                    brand:true,
+                    warehouse:true
                 }
             }
         )
@@ -52,9 +58,30 @@ export async function GET(request) {
         console.log(error);
         return NextResponse.json({
             error,
-            message: "failed to create a warehouse"
+            message: "failed to create a item"
         }, {
             status: 500
         })
+    }
+}
+
+
+export async function DELETE(request){
+    try {
+        const id = request.nextUrl.searchParams.get("id")
+        const deleteBrand = await db.item.delete({
+            where:{
+                id
+            }
+        })
+        return NextResponse.json(deleteBrand)
+    } catch (error) {
+        console.log(error);
+        return NextResponse.json({
+            error,
+            message:"failed to delete the item"
+    },{
+        status:500
+    })
     }
 }

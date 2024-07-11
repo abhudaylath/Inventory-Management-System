@@ -15,7 +15,6 @@ export default function TransferInventoryForm({items,warehouse}) {
     formState: { errors },
   } = useForm();
   async function onSubimit(data) {
-    console.log(data);
     makePostRequest(setLoading,"/api/adjustments/transfer",data,"Adjustment",reset)
   }
   return (

@@ -8,7 +8,7 @@ export default function HomeNav() {
   const pathName = usePathname();
   const navLinks = [
     {
-      title: "Dashboard",
+      title: "Overview",
       href: "/dashboard/home/overview",
     },
     {
@@ -38,15 +38,15 @@ export default function HomeNav() {
             <span className="text-sm">Parimal</span>
           </div>
         </div>
-        <nav className="sticky mt-5 px-5 flex space-x-4">
+        <nav className="sticky mt-3 px-5 flex space-x-4 flex-wrap">
           {navLinks.map((item,i) => {
             return (
               <Link key={i}
                 href={item.href}
                 className={`${
                   pathName === item.href
-                    ? " border-b-2 border-blue-600 text-black"
-                    : ""
+                    ? "inline-block m-2 text-blue-600 border-b-2 border-blue-600 rounded-t-lg active dark:text-blue-500 dark:border-blue-500"
+                    : "m-2 inline-block border-b-2  border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 "
                 }`}
               >
                 {item.title}

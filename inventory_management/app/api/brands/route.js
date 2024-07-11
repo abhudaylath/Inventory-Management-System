@@ -9,7 +9,6 @@ export async function POST(request){
                 title
             }
         })
-        console.log(brand);
         return NextResponse.json(brand)
     } catch (error) {
         console.log(error);
@@ -39,5 +38,25 @@ export async function GET(request) {
         }, {
             status: 500
         })
+    }
+}
+
+export async function DELETE(request){
+    try {
+        const id = request.nextUrl.searchParams.get("id")
+        const deleteBrand = await db.brand.delete({
+            where:{
+                id
+            }
+        })
+        return NextResponse.json(deleteBrand)
+    } catch (error) {
+        console.log(error);
+        return NextResponse.json({
+            error,
+            message:"failed to delete the brand"
+    },{
+        status:500
+    })
     }
 }

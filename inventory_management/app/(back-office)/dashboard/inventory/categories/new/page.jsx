@@ -23,11 +23,10 @@ export default function NewCategories({initialData={},isUpdate=false}) {
     defaultValues:initialData,
   });
   async function onSubimit(data) {
-    console.log(data);
     if(isUpdate){
       makePutRequest(setLoading,`/api/categories/${initialData.id}`,data,"Category",redirect)
     }else{
-      makePostRequest(setLoading,"/api/categories",data,"Category",reset)
+      makePostRequest(setLoading,"/api/categories",data,"Category",redirect)
     }
   }
   return (

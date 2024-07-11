@@ -9,7 +9,7 @@ export default async function Brands(){
         <div>
             <FixedHeader title="Brands" newlink="http://localhost:3000/dashboard/inventory/brands/new"/>
             <div className="my-4 p-8">
-            <DataTable data={supplier} columns={columns} updateLink="brands/update"/>
+            <DataTable data={supplier} columns={columns} updateLink="brands/update" resourceName="brands"/>
             </div>
         </div>
     );

@@ -34,11 +34,10 @@ export default function NewWarehouse({initialData={},isUpdate=false}) {
     defaultValues:initialData,
   });
   async function onSubimit(data) {
-    console.log(data);
     if(isUpdate){
       makePutRequest(setLoading,`/api/warehouse/${initialData.id}`,data,"Warehouse",redirect)
     }else{
-      makePostRequest(setLoading,"/api/warehouse",data,"Warehouse",reset)
+      makePostRequest(setLoading,"/api/warehouse",data,"Warehouse",redirect)
     }
   }
   return (

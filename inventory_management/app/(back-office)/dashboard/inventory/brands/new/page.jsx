@@ -22,11 +22,10 @@ export default function NewBrands({initialData={}, isUpdate=false}) {
     defaultValues:initialData,
   });
   async function onSubimit(data) {
-    console.log(data);
     if(isUpdate){
       makePutRequest(setLoading,`/api/brands/${initialData.id}`,data,"Brand",redirect)
     }else{
-      makePostRequest(setLoading,"/api/brands",data,"Brand",reset)
+      makePostRequest(setLoading,"/api/brands",data,"Brand",redirect)
     }
   }
   return (

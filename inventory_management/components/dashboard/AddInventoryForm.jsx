@@ -15,7 +15,6 @@ export default function AddInventoryForm({items,warehouse}) {
     formState: { errors },
   } = useForm();
   async function onSubimit(data) {
-    console.log(data);
     makePostRequest(setLoading,"/api/adjustments/add",data,"Adjustment",reset)
   }
   return (

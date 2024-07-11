@@ -109,7 +109,7 @@ export default function Sidebar({ sidebar ,setSidebar}) {
         <nav className="flex flex-col">
           <Link
             className="flex items-center p-3 space-x-2 bg-blue-600 rounded-md"
-            href=""
+            href="/dashboard/home/overview"
           >
             <Home className="w-4 h-4" />
             <span>Home</span>

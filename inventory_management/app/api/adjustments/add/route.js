@@ -13,7 +13,6 @@ export async function POST(request){
                 notes
             }
         })
-        console.log(adjustment);
         return NextResponse.json(adjustment)
     } catch (error) {
         console.log(error);

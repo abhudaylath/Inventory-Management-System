@@ -9,7 +9,6 @@ export async function POST(request) {
                 title, phone, email, address, contactPerson, supplierCode, paymentTerms, taxID, notes
             }
         })
-        console.log(supplier);
         return NextResponse.json(supplier)
     } catch (error) {
         console.log(error);
@@ -40,5 +39,25 @@ export async function GET(request) {
         }, {
             status: 500
         })
+    }
+}
+
+export async function DELETE(request){
+    try {
+        const id = request.nextUrl.searchParams.get("id")
+        const deleteBrand = await db.supplier.delete({
+            where:{
+                id
+            }
+        })
+        return NextResponse.json(deleteBrand)
+    } catch (error) {
+        console.log(error);
+        return NextResponse.json({
+            error,
+            message:"failed to delete the supplier"
+    },{
+        status:500
+    })
     }
 }

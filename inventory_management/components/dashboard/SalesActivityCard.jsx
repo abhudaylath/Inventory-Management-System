@@ -33,13 +33,13 @@ export default function SalesActivityCard() {
     },
   ];
   return (
-    <div className="grid grid-cols-4">
+    <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
       {SalesActivity.map((item, i) => {
         return (
           <Link
             href={item.href}
             key={i}
-            className="shadow flex flex-col rounded-lg border border-slate-200 hover:border-blue-500 bg-white p-4 items-center cursor-pointer gap-3 transition-all duration-300 mr-3"
+            className="shadow flex flex-col rounded-lg border border-slate-200 hover:border-blue-500 bg-white p-4 items-center cursor-pointer gap-3 transition-all duration-300 mr-3 mb-3"
           >
             <h4 className={`text-4xl ${item.color}`}>{item.number}</h4>
             <small className="text-slate-500">{item.unit}</small>

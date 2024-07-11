@@ -22,11 +22,10 @@ export default function NewUnits({initialData={}, isUpdate=false}) {
     defaultValues:initialData,
   });
   async function onSubimit(data) {
-    console.log(data);
     if(isUpdate){
       makePutRequest(setLoading,`/api/units/${initialData.id}`,data,"Unit",redirect)
     }else{
-      makePostRequest(setLoading,"/api/units",data,"Unit",reset)
+      makePostRequest(setLoading,"/api/units",data,"Unit",redirect)
     }
   }
   return (
