@@ -4,7 +4,7 @@ import { getData } from "@/lib/getData";
 import React from "react";
 export default async function Warehouse(){
     const supplier = await getData("warehouse");
-    const columns = ["title","location","description","warehouseType"]
+    const columns = ["title","stockQty","description","warehouseType"]
     return(
         <div> 
             <FixedHeader title="Warehouses" newlink="http://localhost:3000/dashboard/inventory/warehouse/new"/>

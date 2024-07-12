@@ -4,6 +4,7 @@ import SubmitButton from "@/components/FormInput/SubmitButton";
 import TextareaInput from "@/components/FormInput/TextareaInput";
 import TextInput from "@/components/FormInput/TextInput";
 import { makePostRequest } from "@/lib/apiRequest";
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 export default function TransferInventoryForm({items,warehouse}) {
@@ -14,8 +15,13 @@ export default function TransferInventoryForm({items,warehouse}) {
     reset,
     formState: { errors },
   } = useForm();
+  const router = useRouter();
+  function redirect(){
+    router.push("/dashboard/inventory/adjustments")
+    router.refresh();
+  }
   async function onSubimit(data) {
-    makePostRequest(setLoading,"/api/adjustments/transfer",data,"Adjustment",reset)
+    makePostRequest(setLoading,"/api/adjustments/transfer",data,"Adjustment",redirect)
   }
   return (
     <form

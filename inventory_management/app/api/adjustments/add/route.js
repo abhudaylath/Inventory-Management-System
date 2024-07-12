@@ -4,6 +4,21 @@ import { NextResponse } from "next/server";
 export async function POST(request){
     try {
         const {itemId,addStockQty,warehouseId,notes,referenceNumber}=await request.json();
+
+        const itemToUpdate = await db.item.findUnique({
+            where:{
+                id:itemId,
+            }
+        })
+        const newQty =  parseInt(itemToUpdate.quantity)+ parseInt(addStockQty);
+        const updateItem = await db.item.update({
+            where:{
+                id:itemId
+            },
+            data:{
+                quantity:newQty
+            }
+        })
         const adjustment = await db.addStockAdjustment.create({
             data: {
                 itemId, 
@@ -42,5 +57,25 @@ export async function GET(request) {
         }, {
             status: 500
         })
+    }
+}
+
+export async function DELETE(request){
+    try {
+        const id = request.nextUrl.searchParams.get("id")
+        const deleteBrand = await db.AddStockAdjustment.delete({
+            where:{
+                id
+            }
+        })
+        return NextResponse.json(deleteBrand)
+    } catch (error) {
+        console.log(error);
+        return NextResponse.json({
+            error,
+            message:"failed to delete the adjustment"
+    },{
+        status:500
+    })
     }
 }

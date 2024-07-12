@@ -4,6 +4,24 @@ import { NextResponse } from "next/server";
 export async function POST(request) {
     try { 
         const items = await request.json();
+
+        const warehouse = await db.warehouse.findUnique({
+            where:{
+                id:items.warehouseId
+            }
+        })
+
+        const newStock = parseInt(warehouse.stockQty)+parseInt(items.qty)
+
+        const updatedWarehouse = await db.warehouse.update({
+            where:{
+                id:items.warehouseId
+            },
+            data:{
+                stockQty:newStock
+            }
+        })
+
         const item = await db.item.create({
             data: {
                 title: items.title,
