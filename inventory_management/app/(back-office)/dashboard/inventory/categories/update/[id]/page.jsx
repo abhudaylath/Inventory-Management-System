@@ -7,5 +7,4 @@ export default async function update({params:{id}}) {
   return (
     <NewCategories initialData={data} isUpdate={true}/>
   )
-}
- 
+} 

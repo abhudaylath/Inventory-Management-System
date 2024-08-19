@@ -89,6 +89,8 @@ model AddStockAdjustment {
   warehouseId     String
   item            Item     @relation(fields: [itemId], references: [id], onDelete: Cascade)
   itemId          String   @db.ObjectId
+  supplier        Supplier     @relation(fields: [supplierId], references: [id], onDelete: Cascade)
+  supplierId      String   @db.ObjectId
   createdAt       DateTime @default(now())
   updatedAt       DateTime @updatedAt
 }
@@ -118,6 +120,7 @@ model Supplier {
   taxID         String?
   notes         String?
   Item          Item[]
+  AddStockAdjustment      AddStockAdjustment[]
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
 }

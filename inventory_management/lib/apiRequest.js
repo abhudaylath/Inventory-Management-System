@@ -18,7 +18,7 @@ export async function makePostRequest(setLoading,url,data,resourceName, reset) {
             reset();
         }else{
             setLoading(false);
-            toast.success('Something went wrong')
+            toast.error('Something went wrong')
         }
     } catch (error) {
         setLoading(false);
@@ -44,7 +44,7 @@ export async function makePutRequest(setLoading,url,data,resourceName, redirect)
             redirect();
         }else{
             setLoading(false);
-            toast.success('Something went wrong')
+            toast.error('Something went wrong')
         }
     } catch (error) {
         setLoading(false);

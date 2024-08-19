@@ -29,7 +29,7 @@ export default function NewCategories({initialData={},isUpdate=false}) {
       makePostRequest(setLoading,"/api/categories",data,"Category",redirect)
     }
   }
-  return (
+return (
     <div>
       <FormHeader title={isUpdate?"Update Category":"New Category"} href="/dashboard/inventory/categories" />
       <form

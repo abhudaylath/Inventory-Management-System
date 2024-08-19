@@ -43,7 +43,7 @@ export default function ImageInput({label,imageUrl="",setImageUrl,endpoint="imag
                 }}
                 onUploadError={(error) => {
                   // Do something with the error.
-                  alert(`ERROR! ${error.message}`);
+                  toast.error('upload was unsuccessful')
                 }}
               />
             )}
